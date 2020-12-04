@@ -188,45 +188,6 @@ public class UserConnection {
     }
 
     /**
-     * Checks for packet flood with the packets sent in the last second.
-     * ALWAYS check for {@link #incrementReceived()} before using this method.
-     *
-     * @return true if the packet should be cancelled
-     * @see #incrementReceived()
-     */
-    public boolean exceedsMaxPPS() {
-        if (clientSide) return false; // Don't apply PPS limiting for client-side
-        ViaVersionConfig conf = Via.getConfig();
-        // Max PPS Checker
-        if (conf.getMaxPPS() > 0) {
-            if (packetsPerSecond >= conf.getMaxPPS()) {
-                disconnect(conf.getMaxPPSKickMessage().replace("%pps", Long.toString(packetsPerSecond)));
-                return true; // don't send current packet
-            }
-        }
-
-        // Tracking PPS Checker
-        if (conf.getMaxWarnings() > 0 && conf.getTrackingPeriod() > 0) {
-            if (secondsObserved > conf.getTrackingPeriod()) {
-                // Reset
-                warnings = 0;
-                secondsObserved = 1;
-            } else {
-                secondsObserved++;
-                if (packetsPerSecond >= conf.getWarningPPS()) {
-                    warnings++;
-                }
-
-                if (warnings >= conf.getMaxWarnings()) {
-                    disconnect(conf.getMaxWarningsKickMessage().replace("%pps", Long.toString(packetsPerSecond)));
-                    return true; // don't send current packet
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
      * Disconnect a connection.
      *
      * @param reason The reason to use, not used if player is not active.
@@ -338,7 +299,7 @@ public class UserConnection {
         // Ignore if pending disconnect
         if (pendingDisconnect) return false;
         // Increment received + Check PPS
-        return !incrementReceived() || !exceedsMaxPPS();
+        return !incrementReceived();
     }
 
     /**

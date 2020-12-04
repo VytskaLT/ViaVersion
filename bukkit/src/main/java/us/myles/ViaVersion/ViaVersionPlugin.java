@@ -202,9 +202,8 @@ public class ViaVersionPlugin extends JavaPlugin implements ViaPlatform<Player> 
         if (Bukkit.getPluginManager().getPlugin("ProtocolLib") != null) {
             getLogger().severe("ViaVersion is already loaded, we're going to kick all the players... because otherwise we'll crash because of ProtocolLib.");
             for (Player player : Bukkit.getOnlinePlayers()) {
-                player.kickPlayer(ChatColor.translateAlternateColorCodes('&', conf.getReloadDisconnectMsg()));
+                player.kickPlayer("Server reloaded");
             }
-
         } else {
             getLogger().severe("ViaVersion is already loaded, this should work fine. If you get any console errors, try rebooting.");
         }

@@ -83,48 +83,6 @@ public interface ViaVersionConfig {
     boolean isAutoTeam();
 
     /**
-     * Get the maximum number of packets a client can send per second.
-     *
-     * @return The number of packets a client can send per second.
-     */
-    int getMaxPPS();
-
-    /**
-     * Get the kick message sent if the user hits the max packets per second.
-     *
-     * @return Kick message, with colour codes using '&amp;amp;'
-     */
-    String getMaxPPSKickMessage();
-
-    /**
-     * The time in seconds that should be tracked for warnings
-     *
-     * @return Time in seconds that should be tracked for warnings
-     */
-    int getTrackingPeriod();
-
-    /**
-     * The number of packets per second to count as a warning
-     *
-     * @return The number of packets per second to count as a warning.
-     */
-    int getWarningPPS();
-
-    /**
-     * Get the maximum number of warnings the client can have in the interval
-     *
-     * @return The number of packets a client can send per second.
-     */
-    int getMaxWarnings();
-
-    /**
-     * Get the kick message sent if the user goes over the warnings in the interval
-     *
-     * @return Kick message, with colour codes using '&amp;amp;'
-     */
-    String getMaxWarningsKickMessage();
-
-    /**
      * Is anti-xray enabled?
      *
      * @return A boolean
@@ -214,14 +172,6 @@ public interface ViaVersionConfig {
      * @return Disconnect message
      */
     String getBlockedDisconnectMsg();
-
-    /**
-     * Get the message sent to players being kicked on reload.
-     * Players are kicked to stop the server crashing
-     *
-     * @return Disconnect message
-     */
-    String getReloadDisconnectMsg();
 
     /**
      * Should we hide errors that occur when trying to convert block and item data over versions?

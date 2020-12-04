@@ -19,12 +19,6 @@ public abstract class AbstractViaConfig extends Config implements ViaVersionConf
     private boolean bossbarPatch;
     private boolean bossbarAntiFlicker;
     private double hologramOffset;
-    private int maxPPS;
-    private String maxPPSKickMessage;
-    private int trackingPeriod;
-    private int warningPPS;
-    private int maxPPSWarnings;
-    private String maxPPSWarningsKickMessage;
     private boolean sendSupportedVersions;
     private boolean simulatePlayerTick;
     private boolean itemCache;
@@ -36,7 +30,6 @@ public abstract class AbstractViaConfig extends Config implements ViaVersionConf
     private boolean nbtArrayFix;
     private IntSet blockedProtocols;
     private String blockedDisconnectMessage;
-    private String reloadDisconnectMessage;
     private boolean suppressConversionWarnings;
     private boolean disable1_13TabComplete;
     private boolean minimizeCooldown;
@@ -76,12 +69,6 @@ public abstract class AbstractViaConfig extends Config implements ViaVersionConf
         bossbarPatch = getBoolean("bossbar-patch", true);
         bossbarAntiFlicker = getBoolean("bossbar-anti-flicker", false);
         hologramOffset = getDouble("hologram-y", -0.96D);
-        maxPPS = getInt("max-pps", 800);
-        maxPPSKickMessage = getString("max-pps-kick-msg", "Sending packets too fast? lag?");
-        trackingPeriod = getInt("tracking-period", 6);
-        warningPPS = getInt("tracking-warning-pps", 120);
-        maxPPSWarnings = getInt("tracking-max-warnings", 3);
-        maxPPSWarningsKickMessage = getString("tracking-max-kick-msg", "You are sending too many packets, :(");
         sendSupportedVersions = getBoolean("send-supported-versions", false);
         simulatePlayerTick = getBoolean("simulate-pt", true);
         itemCache = getBoolean("item-cache", true);
@@ -93,7 +80,6 @@ public abstract class AbstractViaConfig extends Config implements ViaVersionConf
         nbtArrayFix = getBoolean("chat-nbt-fix", true);
         blockedProtocols = new IntOpenHashSet(getIntegerList("block-protocols"));
         blockedDisconnectMessage = getString("block-disconnect-msg", "You are using an unsupported Minecraft version!");
-        reloadDisconnectMessage = getString("reload-disconnect-msg", "Server reload, please rejoin!");
         minimizeCooldown = getBoolean("minimize-cooldown", true);
         teamColourFix = getBoolean("team-colour-fix", true);
         suppressConversionWarnings = getBoolean("suppress-conversion-warnings", false);
@@ -164,36 +150,6 @@ public abstract class AbstractViaConfig extends Config implements ViaVersionConf
     }
 
     @Override
-    public int getMaxPPS() {
-        return maxPPS;
-    }
-
-    @Override
-    public String getMaxPPSKickMessage() {
-        return maxPPSKickMessage;
-    }
-
-    @Override
-    public int getTrackingPeriod() {
-        return trackingPeriod;
-    }
-
-    @Override
-    public int getWarningPPS() {
-        return warningPPS;
-    }
-
-    @Override
-    public int getMaxWarnings() {
-        return maxPPSWarnings;
-    }
-
-    @Override
-    public String getMaxWarningsKickMessage() {
-        return maxPPSWarningsKickMessage;
-    }
-
-    @Override
     public boolean isAntiXRay() {
         return false;
     }
@@ -257,11 +213,6 @@ public abstract class AbstractViaConfig extends Config implements ViaVersionConf
     @Override
     public String getBlockedDisconnectMsg() {
         return blockedDisconnectMessage;
-    }
-
-    @Override
-    public String getReloadDisconnectMsg() {
-        return reloadDisconnectMessage;
     }
 
     @Override
