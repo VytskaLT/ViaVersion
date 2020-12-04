@@ -8,20 +8,13 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import us.myles.ViaVersion.api.Via;
 import us.myles.ViaVersion.api.ViaAPI;
-import us.myles.ViaVersion.api.command.ViaCommandSender;
 import us.myles.ViaVersion.api.configuration.ConfigurationProvider;
 import us.myles.ViaVersion.api.data.MappingDataLoader;
 import us.myles.ViaVersion.api.platform.TaskId;
 import us.myles.ViaVersion.api.platform.ViaConnectionManager;
 import us.myles.ViaVersion.api.platform.ViaPlatform;
 import us.myles.ViaVersion.bukkit.classgenerator.ClassGenerator;
-import us.myles.ViaVersion.bukkit.commands.BukkitCommandHandler;
-import us.myles.ViaVersion.bukkit.commands.BukkitCommandSender;
-import us.myles.ViaVersion.bukkit.platform.BukkitTaskId;
-import us.myles.ViaVersion.bukkit.platform.BukkitViaAPI;
-import us.myles.ViaVersion.bukkit.platform.BukkitViaConfig;
-import us.myles.ViaVersion.bukkit.platform.BukkitViaInjector;
-import us.myles.ViaVersion.bukkit.platform.BukkitViaLoader;
+import us.myles.ViaVersion.bukkit.platform.*;
 import us.myles.ViaVersion.bukkit.util.NMSUtil;
 import us.myles.ViaVersion.dump.PluginInfo;
 import us.myles.ViaVersion.util.GsonUtil;
@@ -33,7 +26,6 @@ import java.util.UUID;
 public class ViaVersionPlugin extends JavaPlugin implements ViaPlatform<Player> {
     private static ViaVersionPlugin instance;
     private final ViaConnectionManager connectionManager = new ViaConnectionManager();
-    private final BukkitCommandHandler commandHandler;
     private final BukkitViaConfig conf;
     private final ViaAPI<Player> api = new BukkitViaAPI(this);
     private final List<Runnable> queuedTasks = new ArrayList<>();
@@ -46,12 +38,9 @@ public class ViaVersionPlugin extends JavaPlugin implements ViaPlatform<Player> 
     public ViaVersionPlugin() {
         instance = this;
 
-        // Command handler
-        commandHandler = new BukkitCommandHandler();
         // Init platform
         Via.init(ViaManager.builder()
                 .platform(this)
-                .commandHandler(commandHandler)
                 .injector(new BukkitViaInjector())
                 .loader(new BukkitViaLoader(this))
                 .build());
@@ -106,9 +95,6 @@ public class ViaVersionPlugin extends JavaPlugin implements ViaPlatform<Player> 
         if (lateBind) {
             Via.getManager().init();
         }
-
-        getCommand("viaversion").setExecutor(commandHandler);
-        getCommand("viaversion").setTabCompleter(commandHandler);
 
         // Run queued tasks
         for (Runnable r : queuedTasks) {
@@ -180,16 +166,6 @@ public class ViaVersionPlugin extends JavaPlugin implements ViaPlatform<Player> 
         if (taskId instanceof BukkitTaskId) {
             getServer().getScheduler().cancelTask((Integer) taskId.getObject());
         }
-    }
-
-    @Override
-    public ViaCommandSender[] getOnlinePlayers() {
-        ViaCommandSender[] array = new ViaCommandSender[Bukkit.getOnlinePlayers().size()];
-        int i = 0;
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            array[i++] = new BukkitCommandSender(player);
-        }
-        return array;
     }
 
     @Override

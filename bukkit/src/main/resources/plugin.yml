@@ -7,7 +7,3 @@ load: postworld
 api-version: 1.13
 loadbefore: [ProtocolLib, ProxyPipe, SpigotLib, SkinRestorer]
 softdepend: [ProtocolSupport, PacketListenerApi]
-commands:
-  viaversion:
-    description: Shows ViaVersion Version and more.
-    aliases: [viaver, vvbukkit]

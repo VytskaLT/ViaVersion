@@ -11,7 +11,6 @@ import us.myles.ViaVersion.api.platform.ViaPlatformLoader;
 import us.myles.ViaVersion.api.platform.providers.ViaProviders;
 import us.myles.ViaVersion.api.protocol.ProtocolRegistry;
 import us.myles.ViaVersion.api.protocol.ProtocolVersion;
-import us.myles.ViaVersion.commands.ViaCommandHandler;
 import us.myles.ViaVersion.protocols.protocol1_13to1_12_2.TabCompleteThread;
 import us.myles.ViaVersion.protocols.protocol1_9to1_8.ViaIdleThread;
 
@@ -27,17 +26,15 @@ public class ViaManager {
     private final ViaProviders providers = new ViaProviders();
     // Internals
     private final ViaInjector injector;
-    private final ViaCommandHandler commandHandler;
     private final ViaPlatformLoader loader;
     private final Set<String> subPlatforms = new HashSet<>();
     private List<Runnable> enableListeners = new ArrayList<>();
     private TaskId mappingLoadingTask;
     private boolean debug;
 
-    public ViaManager(ViaPlatform<?> platform, ViaInjector injector, ViaCommandHandler commandHandler, ViaPlatformLoader loader) {
+    public ViaManager(ViaPlatform<?> platform, ViaInjector injector, ViaPlatformLoader loader) {
         this.platform = platform;
         this.injector = injector;
-        this.commandHandler = commandHandler;
         this.loader = loader;
     }
 
@@ -189,10 +186,6 @@ public class ViaManager {
         return injector;
     }
 
-    public ViaCommandHandler getCommandHandler() {
-        return commandHandler;
-    }
-
     public ViaPlatformLoader getLoader() {
         return loader;
     }
@@ -227,7 +220,6 @@ public class ViaManager {
     public static final class ViaManagerBuilder {
         private ViaPlatform<?> platform;
         private ViaInjector injector;
-        private ViaCommandHandler commandHandler;
         private ViaPlatformLoader loader;
 
         public ViaManagerBuilder platform(ViaPlatform<?> platform) {
@@ -245,13 +237,8 @@ public class ViaManager {
             return this;
         }
 
-        public ViaManagerBuilder commandHandler(ViaCommandHandler commandHandler) {
-            this.commandHandler = commandHandler;
-            return this;
-        }
-
         public ViaManager build() {
-            return new ViaManager(platform, injector, commandHandler, loader);
+            return new ViaManager(platform, injector, loader);
         }
     }
 }

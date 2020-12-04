@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import us.myles.ViaVersion.api.Via;
 import us.myles.ViaVersion.api.ViaAPI;
 import us.myles.ViaVersion.api.ViaVersionConfig;
-import us.myles.ViaVersion.api.command.ViaCommandSender;
 import us.myles.ViaVersion.api.configuration.ConfigurationProvider;
 import us.myles.ViaVersion.api.data.UserConnection;
 import us.myles.ViaVersion.protocols.base.ProtocolInfo;
@@ -99,13 +98,6 @@ public interface ViaPlatform<T> {
      * @param taskId The task ID to cancel
      */
     void cancelTask(TaskId taskId);
-
-    /**
-     * Get the online players
-     *
-     * @return Array of ViaCommandSender
-     */
-    ViaCommandSender[] getOnlinePlayers();
 
     /**
      * Send a message to a player
