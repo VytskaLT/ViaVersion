@@ -61,7 +61,7 @@ public class ViaVersionPlugin extends JavaPlugin implements ViaPlatform<Player> 
         // Check if we're using protocol support too
         protocolSupport = Bukkit.getPluginManager().getPlugin("ProtocolSupport") != null;
         if (protocolSupport) {
-            getLogger().info("Hooking into ProtocolSupport, to prevent issues!");
+            //getLogger().info("Hooking into ProtocolSupport, to prevent issues!");
             try {
                 BukkitViaInjector.patchLists();
             } catch (Exception e) {
@@ -95,7 +95,7 @@ public class ViaVersionPlugin extends JavaPlugin implements ViaPlatform<Player> 
         ClassGenerator.generate();
         lateBind = !BukkitViaInjector.isBinded();
 
-        getLogger().info("ViaVersion " + getDescription().getVersion() + (compatSpigotBuild ? "compat" : "") + " is now loaded" + (lateBind ? ", waiting for boot. (late-bind)" : ", injecting!"));
+        //getLogger().info("ViaVersion " + getDescription().getVersion() + (compatSpigotBuild ? "compat" : "") + " is now loaded" + (lateBind ? ", waiting for boot. (late-bind)" : ", injecting!"));
         if (!lateBind) {
             Via.getManager().init();
         }
@@ -109,11 +109,6 @@ public class ViaVersionPlugin extends JavaPlugin implements ViaPlatform<Player> 
 
         getCommand("viaversion").setExecutor(commandHandler);
         getCommand("viaversion").setTabCompleter(commandHandler);
-
-        // Warn them if they have anti-xray on and they aren't using spigot
-        if (conf.isAntiXRay() && !spigot) {
-            getLogger().info("You have anti-xray on in your config, since you're not using spigot it won't fix xray!");
-        }
 
         // Run queued tasks
         for (Runnable r : queuedTasks) {

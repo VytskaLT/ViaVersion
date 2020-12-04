@@ -135,7 +135,6 @@ public abstract class ViaCommandHandler implements ViaVersionCommand {
         registerSubCommand(new DebugSubCmd());
         registerSubCommand(new DumpSubCmd());
         registerSubCommand(new DisplayLeaksSubCmd());
-        registerSubCommand(new DontBugMeSubCmd());
         registerSubCommand(new AutoTeamSubCmd());
         registerSubCommand(new HelpSubCmd());
         registerSubCommand(new ReloadSubCmd());

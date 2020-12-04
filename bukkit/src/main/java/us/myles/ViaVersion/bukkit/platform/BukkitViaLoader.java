@@ -13,7 +13,6 @@ import us.myles.ViaVersion.api.platform.ViaPlatformLoader;
 import us.myles.ViaVersion.api.protocol.ProtocolRegistry;
 import us.myles.ViaVersion.api.protocol.ProtocolVersion;
 import us.myles.ViaVersion.bukkit.classgenerator.ClassGenerator;
-import us.myles.ViaVersion.bukkit.listeners.UpdateListener;
 import us.myles.ViaVersion.bukkit.listeners.multiversion.PlayerSneakListener;
 import us.myles.ViaVersion.bukkit.listeners.protocol1_15to1_14_4.EntityToggleGlideListener;
 import us.myles.ViaVersion.bukkit.listeners.protocol1_9to1_8.ArmorListener;
@@ -61,9 +60,6 @@ public class BukkitViaLoader implements ViaPlatformLoader {
 
     @Override
     public void load() {
-        // Update Listener
-        registerListener(new UpdateListener());
-
         /* Base Protocol */
         final ViaVersionPlugin plugin = (ViaVersionPlugin) Bukkit.getPluginManager().getPlugin("ViaVersion");
 
@@ -106,7 +102,7 @@ public class BukkitViaLoader implements ViaPlatformLoader {
                 || Bukkit.getVersion().toLowerCase(Locale.ROOT).contains("taco")
                 || Bukkit.getVersion().toLowerCase(Locale.ROOT).contains("torch"))
                 && ProtocolRegistry.SERVER_PROTOCOL < ProtocolVersion.v1_12.getVersion()) {
-            plugin.getLogger().info("Enabling Paper/TacoSpigot/Torch patch: Fixes block placement.");
+            //plugin.getLogger().info("Enabling Paper/TacoSpigot/Torch patch: Fixes block placement.");
             storeListener(new PaperPatch(plugin)).register();
         }
 

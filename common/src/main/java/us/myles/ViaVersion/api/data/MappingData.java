@@ -28,7 +28,7 @@ public class MappingData {
     }
 
     public void load() {
-        Via.getPlatform().getLogger().info("Loading " + oldVersion + " -> " + newVersion + " mappings...");
+        //Via.getPlatform().getLogger().info("Loading " + oldVersion + " -> " + newVersion + " mappings...");
         JsonObject diffmapping = hasDiffFile ? loadDiffFile() : null;
         JsonObject oldMappings = MappingDataLoader.loadData("mapping-" + oldVersion + ".json", true);
         JsonObject newMappings = MappingDataLoader.loadData("mapping-" + newVersion + ".json", true);

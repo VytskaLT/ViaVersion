@@ -10,7 +10,6 @@ import us.myles.ViaVersion.api.protocol.ProtocolRegistry;
 import us.myles.ViaVersion.api.protocol.ProtocolVersion;
 import us.myles.ViaVersion.bungee.handlers.BungeeServerHandler;
 import us.myles.ViaVersion.bungee.listeners.ElytraPatch;
-import us.myles.ViaVersion.bungee.listeners.UpdateListener;
 import us.myles.ViaVersion.bungee.providers.*;
 import us.myles.ViaVersion.bungee.service.ProtocolDetectorService;
 import us.myles.ViaVersion.protocols.base.VersionProvider;
@@ -42,7 +41,6 @@ public class BungeeViaLoader implements ViaPlatformLoader {
     public void load() {
         // Listeners
         registerListener(plugin);
-        registerListener(new UpdateListener());
         registerListener(new BungeeServerHandler());
 
         if (ProtocolRegistry.SERVER_PROTOCOL < ProtocolVersion.v1_9.getVersion()) {

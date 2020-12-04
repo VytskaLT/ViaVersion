@@ -14,7 +14,6 @@ import us.myles.ViaVersion.api.protocol.ProtocolVersion;
 import us.myles.ViaVersion.commands.ViaCommandHandler;
 import us.myles.ViaVersion.protocols.protocol1_13to1_12_2.TabCompleteThread;
 import us.myles.ViaVersion.protocols.protocol1_9to1_8.ViaIdleThread;
-import us.myles.ViaVersion.update.UpdateUtil;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -51,10 +50,6 @@ public class ViaManager {
             // Reload?
             platform.onReload();
         }
-        // Check for updates
-        if (platform.getConf().isCheckForUpdates()) {
-            UpdateUtil.sendUpdateMessage();
-        }
 
         // Force class load
         ProtocolRegistry.init();
@@ -90,7 +85,7 @@ public class ViaManager {
         }
         // Check if there are any pipes to this version
         if (ProtocolRegistry.SERVER_PROTOCOL != -1) {
-            platform.getLogger().info("ViaVersion detected server version: " + ProtocolVersion.getProtocol(ProtocolRegistry.SERVER_PROTOCOL));
+            //platform.getLogger().info("ViaVersion detected server version: " + ProtocolVersion.getProtocol(ProtocolRegistry.SERVER_PROTOCOL));
             if (!ProtocolRegistry.isWorkingPipe() && !platform.isProxy()) {
                 platform.getLogger().warning("ViaVersion does not have any compatible versions for this server version!");
                 platform.getLogger().warning("Please remember that ViaVersion only adds support for versions newer than the server version.");
@@ -98,8 +93,8 @@ public class ViaManager {
                 platform.getLogger().warning("In that case please read the ViaVersion resource page carefully or use https://jo0001.github.io/ViaSetup");
                 platform.getLogger().warning("and if you're still unsure, feel free to join our Discord-Server for further assistance.");
             } else if (ProtocolRegistry.SERVER_PROTOCOL == ProtocolVersion.v1_8.getVersion() && !platform.isProxy()) {
-                platform.getLogger().warning("This version of Minecraft is over half a decade old and support for it will be fully dropped eventually. "
-                        + "Please upgrade to a newer version to avoid encountering bugs and stability issues that have long been fixed.");
+                //platform.getLogger().warning("This version of Minecraft is over half a decade old and support for it will be fully dropped eventually. "
+                //        + "Please upgrade to a newer version to avoid encountering bugs and stability issues that have long been fixed.");
             }
         }
         // Load Listeners / Tasks
@@ -131,7 +126,7 @@ public class ViaManager {
 
     public void destroy() {
         // Uninject
-        platform.getLogger().info("ViaVersion is disabling, if this is a reload and you experience issues consider rebooting.");
+        //platform.getLogger().info("ViaVersion is disabling, if this is a reload and you experience issues consider rebooting.");
         try {
             injector.uninject();
         } catch (Exception e) {

@@ -9,7 +9,6 @@ import java.io.File;
 
 public abstract class AbstractViaConfig extends Config implements ViaVersionConfig {
 
-    private boolean checkForUpdates;
     private boolean preventCollision;
     private boolean useNewEffectIndicator;
     private boolean useNewDeathmessages;
@@ -67,7 +66,6 @@ public abstract class AbstractViaConfig extends Config implements ViaVersionConf
     }
 
     protected void loadFields() {
-        checkForUpdates = getBoolean("checkforupdates", true);
         preventCollision = getBoolean("prevent-collision", true);
         useNewEffectIndicator = getBoolean("use-new-effect-indicator", true);
         useNewDeathmessages = getBoolean("use-new-deathmessages", true);
@@ -113,17 +111,6 @@ public abstract class AbstractViaConfig extends Config implements ViaVersionConf
         healthNaNFix = getBoolean("fix-1_14-health-nan", true);
         instantRespawn = getBoolean("use-1_15-instant-respawn", false);
         ignoreLongChannelNames = getBoolean("ignore-long-1_16-channel-names", true);
-    }
-
-    @Override
-    public boolean isCheckForUpdates() {
-        return checkForUpdates;
-    }
-
-    @Override
-    public void setCheckForUpdates(boolean checkForUpdates) {
-        this.checkForUpdates = checkForUpdates;
-        set("checkforupdates", checkForUpdates);
     }
 
     @Override

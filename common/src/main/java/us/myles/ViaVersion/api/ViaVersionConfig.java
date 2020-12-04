@@ -5,21 +5,6 @@ import it.unimi.dsi.fastutil.ints.IntSet;
 public interface ViaVersionConfig {
 
     /**
-     * Get if the plugin should check for updates
-     *
-     * @return true if update checking is enabled
-     */
-    boolean isCheckForUpdates();
-
-    /**
-     * Sets whether to check for updates. This updates the internally cached value
-     * as well as the config, but does not save the config to disk.
-     *
-     * @param checkForUpdates true to check for updates on server start and joins
-     */
-    void setCheckForUpdates(boolean checkForUpdates);
-
-    /**
      * Get if collision preventing for players is enabled
      *
      * @return true if collision preventing is enabled

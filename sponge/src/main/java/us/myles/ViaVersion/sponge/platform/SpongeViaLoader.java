@@ -12,7 +12,6 @@ import us.myles.ViaVersion.api.protocol.ProtocolVersion;
 import us.myles.ViaVersion.protocols.protocol1_9to1_8.providers.BulkChunkTranslatorProvider;
 import us.myles.ViaVersion.protocols.protocol1_9to1_8.providers.HandItemProvider;
 import us.myles.ViaVersion.protocols.protocol1_9to1_8.providers.MovementTransmitterProvider;
-import us.myles.ViaVersion.sponge.listeners.UpdateListener;
 import us.myles.ViaVersion.sponge.listeners.protocol1_9to1_8.BlockListener;
 import us.myles.ViaVersion.sponge.listeners.protocol1_9to1_8.DeathListener;
 import us.myles.ViaVersion.sponge.listeners.protocol1_9to1_8.HandItemCache;
@@ -35,10 +34,6 @@ public class SpongeViaLoader implements ViaPlatformLoader {
         this.plugin = plugin;
     }
 
-    private void registerListener(Object listener) {
-        Sponge.getEventManager().registerListeners(plugin, storeListener(listener));
-    }
-
     private <T> T storeListener(T listener) {
         listeners.add(listener);
         return listener;
@@ -46,9 +41,6 @@ public class SpongeViaLoader implements ViaPlatformLoader {
 
     @Override
     public void load() {
-        // Update Listener
-        registerListener(new UpdateListener());
-
         /* 1.9 client to 1.8 server */
         if (ProtocolRegistry.SERVER_PROTOCOL < ProtocolVersion.v1_9.getVersion()) {
             try {
