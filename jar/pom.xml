@@ -158,26 +158,6 @@
             <artifactId>viaversion-bukkit</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>us.myles</groupId>
-            <artifactId>viaversion-bungee</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>us.myles</groupId>
-            <artifactId>viaversion-fabric</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>us.myles</groupId>
-            <artifactId>viaversion-sponge</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>us.myles</groupId>
-            <artifactId>viaversion-velocity</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
     </dependencies>
 
 </project>

@@ -18,12 +18,6 @@
     <modules>
         <module>common</module>
         <module>bukkit</module>
-        <module>bukkit-legacy</module>
-        <module>bungee</module>
-        <module>fabric</module>
-        <module>sponge</module>
-        <module>sponge-legacy</module>
-        <module>velocity</module>
         <module>jar</module>
     </modules>
 
@@ -45,24 +39,6 @@
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots</url>
-        </repository>
-
-        <!-- Bungee Repository -->
-        <repository>
-            <id>bungeecord-repo</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </repository>
-
-        <!-- Velocity repository -->
-        <repository>
-            <id>velocity</id>
-            <url>https://nexus.velocitypowered.com/repository/velocity-artifacts-snapshots/</url>
-        </repository>
-
-        <!-- Sponge repository -->
-        <repository>
-            <id>sponge</id>
-            <url>https://repo.spongepowered.org/maven</url>
         </repository>
 
         <!-- ViaVersion Repository -->
